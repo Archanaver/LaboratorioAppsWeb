@@ -13,8 +13,13 @@ exports.bicicleta_create_get = function(req, res){
 }
 
 exports.bicicleta_create_post = function(req, res){
-    let temp_bici = new Bicicleta(req.body.id, req.body.color, req.body.modelo)
-    temp_bici.ubicacion = [req.body.lat, req.body.lon]
+    let temp_bici = {
+        id:req.body.id, 
+        color:req.body.color, 
+        modelo:req.body.modelo,
+        lat:req.body.lat,
+        lon:req.body.lon
+    }
     Bicicleta.add(temp_bici).then(function(){
         res.redirect('/bicicletas')
 
@@ -55,8 +60,13 @@ exports.bicicleta_update_get = function(req, res){
 // }
 
 exports.bicicleta_update_post = function(req, res){
-    let temp_bici = new Bicicleta(req.body.id, req.body.color, req.body.modelo)
-    temp_bici.ubicacion = [req.body.lat, req.body.lon]
+    let temp_bici = {
+        id:req.body.id, 
+        color:req.body.color, 
+        modelo:req.body.modelo,
+        lat:req.body.lat,
+        lon:req.body.lon
+    }
     Bicicleta.update(temp_bici)
     .then(function(){
         res.redirect('/bicicletas')
