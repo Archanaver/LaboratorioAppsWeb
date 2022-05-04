@@ -1,0 +1,26 @@
+extends ../layout
+
+block content 
+    h1 Listado de bicicletas para reserva
+    table.table 
+        thead  
+            tr 
+                th ID
+                th Color
+                th Modelo
+                th Ubicacion
+                th
+        tbody 
+            each bici in bicis
+                tr
+                    td=bici.code
+                    td=bici.color
+                    td=bici.modelo
+                    td=bici.ubicacion
+                    td 
+                        form.inline(method='post' action='/usuarios/' + bici.code + '/reserva')
+                            input(type='hidden' name='code' value= bici.code)
+                            input(type='hidden' name='code' value= bici._id)
+                            button.link-button(type='submit' name='submit_param' value='submit_value' class='btn')
+                                = 'Reservar'
+    //- a(href='/') Home
