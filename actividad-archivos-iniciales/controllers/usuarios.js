@@ -82,6 +82,10 @@ module.exports = {
             // Validate if user exist in our database
              const user = await Usuario.findOne({ email });
 
+            if(!user.verificado){
+                 return res.status(400).send("Su cuenta no ha sido verificada");
+             }
+
             if (user && (await bcrypt.compare(password, user.password))) {
                 // Create token
                 const token = jwt.sign(
